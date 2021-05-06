@@ -16,19 +16,19 @@ MOZMOS Data Interpreter, and accompanying software, documentation and files are 
 * General Bug Fixes
 
 ## Future Features
-- [] Settings Menu
-    - [] _Change colours_
-    - [] _Change graph colours_
-    - [] _Change graph type_
-    - [] _Disability/Inclusivity Settings_
-        - [] _Audio sounds for buttons and text_
-    - [] _Change Language_
+- [ ] Settings Menu
+    - [ ] _Change colours_
+    - [ ] _Change graph colours_
+    - [ ] _Change graph type_
+    - [ ] _Disability/Inclusivity Settings_
+        - [ ] _Audio sounds for buttons and text_
+    - [ ] _Change Language_
 - [x] Graph Creation (Framework built, just need to include
-- [] Convert graph into image for exportation
-- [] Visually appealing interface
-    - [] _Backgrounds_
-    - [] _Colours_
-    - [] _Styles_
+- [ ] Convert graph into image for exportation
+- [ ] Visually appealing interface
+    - [ ] _Backgrounds_
+    - [ ] _Colours_
+    - [ ] _Styles_
     
 
 ## Update List
