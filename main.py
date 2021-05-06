@@ -2,24 +2,27 @@ from tkinter import *
 import settings
 from settings import *
 import matplotlib as graphTool
+import matplotlib as plt
 from matplotlib import pyplot as graphEditor
-from matplotlib import FigureCanvasTkAgg
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.figure import Figure
 from importFile import *
+import numpy as np
 
-master = Tk()
+root = Tk()
 
-master.title = TITLE
+root.title = TITLE
 
 class Init:
     def setup():
         Init.buttons()
     
     def buttons():
-        loadFile = Button(master, text = "Load File", command = Commands.load).place(x = 20, y = 50)
-        allDataPoints = Button(master, text = "View All Data Points", command = lambda: Commands.filterData("all")).place(x = 20, y = 150)
-        ph = Button(master, text = "View pH Levels", command = lambda: Commands.filterData("ph")).place(x = 20, y = 180)
-        temperature = Button(master, text = "View Temperature Levels", command = lambda: Commands.filterData("temp")).place(x = 20, y = 210)
-        ppm = Button(master, text = "View PPM Levels", command = lambda: Commands.filterData("ppm")).place(x = 20, y = 240)
+        loadFile = Button(root, text = "Load File", command = Commands.load).place(x = 20, y = 50)
+        allDataPoints = Button(root, text = "View All Data Points", command = lambda: Commands.filterData("all")).place(x = 20, y = 150)
+        ph = Button(root, text = "View pH Levels", command = lambda: Commands.filterData("ph")).place(x = 20, y = 180)
+        temperature = Button(root, text = "View Temperature Levels", command = lambda: Commands.filterData("temp")).place(x = 20, y = 210)
+        ppm = Button(root, text = "View PPM Levels", command = lambda: Commands.filterData("ppm")).place(x = 20, y = 240)
 
 class Commands:
     ##Loads the file
@@ -67,40 +70,64 @@ class Commands:
             repairedData.remove(repairedData[(len(repairedData) - 1) - i])
 
         ##Split the data into groups of 4 to represent the different pieces of data
+        pHArray = []
+        temperatureArray = []
+        ppmArray = []
+        timeArray = [] #sorted array
+
         for i in range(0,len(repairedData)):
             dataPiece = repairedData[i]
-            tempData.append(dataPiece)
+            print(settings.dataCounter)
+            if settings.dataCounter == 0: #ph
+                pHArray.append(dataPiece)
+            if settings.dataCounter == 1: #ph
+                temperatureArray.append(dataPiece)
+            if settings.dataCounter == 2: #ph
+                ppmArray.append(dataPiece)
             if settings.dataCounter == 3:
-                data.append(tempData)
+                timeArray.append(dataPiece)
                 settings.dataCounter = 0
-                tempData = []
             else:
                 settings.dataCounter += 1
 
+        data.append(pHArray)
+        data.append(temperatureArray)
+        data.append(ppmArray)
+        print(data)
+        
+        #Graph Data
+        #Graph.graph_draw([[50,20,24,53,17]])
+        Graph.graph_draw(data, timeArray)
+
+    def checkdatatype(mainArray, partOfArray, mainArrayLength):
+        for i in range(0, mainArrayLength):
+            if i == 0 and mainArray[i] == partOfArray:
+                return "pH"
+            elif i == 1 and mainArray[i] == partOfArray:
+                return "Temperature"
+            elif i == 2 and mainArray[i] == partOfArray:
+                return "Salinity"
 
 class Graph:
     def init():
         graphTool.use("TkAgg")
 
-    def graph_draw():
-        x1 = [10,20,30]
-        y1 = [20,40,60]
+    def graph_draw(data, timerange):
+        f = Figure(figsize = (GRAPH_WIDTH,GRAPH_HEIGHT), dpi=100)
+        a = f.add_subplot(111)
+        for dataArray in data:
+            dataLabel = Commands.checkdatatype(data, dataArray, len(data))
+            dataArray = list(map(int, dataArray))
+            a.plot(timerange, dataArray, label = dataLabel)
 
-        graphEditor.plot(x1, y1, label = "line")
-        
-        x2 = [15,25,35]
-        y2 = [40, 10, 30]
+        f.suptitle("Data Collected")
 
-        graphEditor.plot(x2, y2, label = "line 2")
-        graphEditor.xlabel('x-axis')
-        graphEditor.ylabel('y-axis')
-        graphEditor.title(GRAPH_TITLE)
-        graphEditor.legend()
-        graphEditor.show()
+        canvas = FigureCanvasTkAgg(f, root)
+        a.legend()
+        canvas.get_tk_widget().place(x = 200, y = 10)
 
 ##Run window and setup
 Init.setup()
-Graph.graph_draw()
-master.geometry(f"{WIDTH}x{HEIGHT}")
-master.resizable(width = False, height = False)
-master.mainloop()
+root.geometry(f"{WIDTH}x{HEIGHT}")
+root.resizable(width = False, height = False)
+root.mainloop()
