@@ -32,15 +32,15 @@ MOZMOS Data Interpreter, and accompanying software, documentation and files are 
     
 
 ## Update List
-#### Version 0.1.1
-* Created the main GUI page
-* Created the algorithm to import the file, and backup systems in case something goes wrong with the import (including if something goes wrong)
-* Created stub buttons for data filtering
-* Created algorithm to read the data, and filter out any excess data so it can be cleanly split into groups of 4 (1 array position per data), and added these groups into a multi-dimensional array
-
 #### Version 0.1.2
 * Created algorithm to generate graphs based on data
     * _Uses time as the x-axis, and the actual data points for the y-axis_
 * Embedded the graph into the TKinter software, so it will be manipulatable.
 * Graph algorithm automatically discerns between data types, and will colour and label each line accordingly
 * General Bug Fixes
+
+#### Version 0.1.1
+* Created the main GUI page
+* Created the algorithm to import the file, and backup systems in case something goes wrong with the import (including if something goes wrong)
+* Created stub buttons for data filtering
+* Created algorithm to read the data, and filter out any excess data so it can be cleanly split into groups of 4 (1 array position per data), and added these groups into a multi-dimensional array
