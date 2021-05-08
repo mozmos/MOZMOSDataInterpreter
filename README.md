@@ -20,6 +20,7 @@ MOZMOS Data Interpreter, and accompanying software, documentation and files are 
 * Graph will automatically update with the filtered data, including retaining the same colour for a more detailed look
 * Added automatic labelling of data points
 * General bug fixes
+* 1 hotfix performed
 
 ## Future Features
 - [ ] Settings Menu
@@ -29,7 +30,7 @@ MOZMOS Data Interpreter, and accompanying software, documentation and files are 
     - [ ] _Disability/Inclusivity Settings_
         - [ ] _Audio sounds for buttons and text_
     - [ ] _Change Language_
-- [x] Graph Creation (Framework built, just need to include
+- [x] Graph Creation
 - [x] Convert graph into image for exportation
 - [ ] Remove anti-override feature of graph saving
 - [ ] Visually appealing interface
@@ -38,7 +39,6 @@ MOZMOS Data Interpreter, and accompanying software, documentation and files are 
     - [ ] _Styles_
     - [x] _Buttons_
     
-
 ## Update List
 #### Version 0.1.3
 * You can now save graphs as an image
@@ -63,3 +63,7 @@ MOZMOS Data Interpreter, and accompanying software, documentation and files are 
 * Created the algorithm to import the file, and backup systems in case something goes wrong with the import (including if something goes wrong)
 * Created stub buttons for data filtering
 * Created algorithm to read the data, and filter out any excess data so it can be cleanly split into groups of 4 (1 array position per data), and added these groups into a multi-dimensional array
+
+## Hotfix list
+#### Hotfix for Version 0.1.3
+* Fixed bug where uploading a second file would raise an error, and graph wouldn't display

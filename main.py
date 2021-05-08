@@ -83,7 +83,6 @@ class Commands:
     #STUB - filters the graph by data type
     def filterData(filter):
         global data, timeData, fileSuccess, currentFilter
-        print(currentFilter)
         if fileSuccess:
             tempArray = []
             
@@ -113,7 +112,6 @@ class Commands:
                 tempArray.append(data[2])
                 graph = Graph.graph_draw(tempArray, timeData, LINE_COLOURS[2], "Salinity")
                 currentFilter = 'ppm'
-            print(graph)
             return graph
         else:
             messagebox.showwarning("No File Loaded", "No file was loaded. Please load one for data to display")
@@ -133,13 +131,13 @@ class Commands:
         if (len(repairedData) % DATA_AMOUNT) == 0:
             print("Data is adequate!")
         elif ((len(repairedData) - 1) % DATA_AMOUNT) == 0:
-            print("Data is adequate! Removed 1 data piece")
+            print("Data is repaired! Removed 1 data piece")
             settings.removedDataLength += 1
         elif ((len(repairedData) - 2) % DATA_AMOUNT) == 0:
-            print("Data is adequate! Removed 2 data pieces")
+            print("Data is repaired! Removed 2 data pieces")
             settings.removedDataLength += 2
         elif ((len(repairedData) - 3) % DATA_AMOUNT) == 0:
-            print("Data is adequate! Removed 3 data pieces")
+            print("Data is repaired! Removed 3 data pieces")
             settings.removedDataLength += 3
         
         ##Remove the excess data that is unneeded
@@ -150,6 +148,7 @@ class Commands:
         pHArray = []
         temperatureArray = []
         ppmArray = []
+        timeData = []
 
         for i in range(0,len(repairedData)):
             dataPiece = repairedData[i]
@@ -186,7 +185,7 @@ class Graph:
     def init():
         graphTool.use("TkAgg")
 
-    def graph_draw(data, timerange, *args, **args2):
+    def graph_draw(data, timerange, *args):
         global icons
         filteredData = False
         #Initialise the graph
@@ -195,16 +194,16 @@ class Graph:
         #check for filter arguments
         if args:
             filteredData = True
-            print("filteredData")
-        if args2:
-            print("filteredData2")
         
         #Load and display the data
+        insertedTimeRange = []
         for dataArray in data:
             insertedTimeRange = timerange
             dataLabel = Commands.checkdatatype(data, dataArray, len(data))
             dataArray = list(map(int, dataArray))
             insertedTimeRange = list(map(int, insertedTimeRange))
+
+
             if not filteredData:
                 a.plot(insertedTimeRange, dataArray, label = dataLabel)
             else:
@@ -220,8 +219,6 @@ class Graph:
         saveImg = Button(root, image = icons[5], command = Graph.saveGraph)
         saveImg.image = icons[5]
         saveImg.place(x =940, y = 625)
-
-        print(f)
         return f
     
     def saveGraph():
