@@ -70,10 +70,12 @@ class Commands:
     ##Loads the file
     def load(buttonArray):
         global fileSuccess
+        fileSuccess = False
         print("Loading file...")
         file = FileImport.importfile()
         if file != "failed":
             fileSuccess = True
+        print(fileSuccess)
         if fileSuccess:
             file = open(file, "r")
             for button in buttonArray:

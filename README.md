@@ -65,5 +65,6 @@ MOZMOS Data Interpreter, and accompanying software, documentation and files are 
 * Created algorithm to read the data, and filter out any excess data so it can be cleanly split into groups of 4 (1 array position per data), and added these groups into a multi-dimensional array
 
 ## Hotfix list
-#### Hotfix for Version 0.1.3
-* Fixed bug where uploading a second file would raise an error, and graph wouldn't display
+#### Version 0.1.3
+* Hotfix 1: Fixed bug where uploading a second file would raise an error, and graph wouldn't display
+* Hotfix 2: Fixed bug where system would raise an error when data was already uploaded and user would cancel a second upload of data
