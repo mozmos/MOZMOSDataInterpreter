@@ -10,5 +10,6 @@ dataCounter = 0
 #Graph
 GRAPH_TITLE = "Collected Data"
 GRAPH_WIDTH = 10
-GRAPH_HEIGHT = 7
+GRAPH_HEIGHT = 5
 YAXIS = [0,100]
+LINE_COLOURS = ['blue', 'orange', 'green']
