@@ -1,18 +1,24 @@
+#gui
 from tkinter import *
+
+#Files
+from importFile import *
+from settingsPage import *
 import settings
 from settings import *
+
+#graphing
 import matplotlib as graphTool
-import matplotlib as plt
 from matplotlib import pyplot as graphEditor
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
-from importFile import *
-import numpy as np
+
+#Key Modules
 import os
 
 root = Tk()
 
-root.title = TITLE
+root.title(TITLE)
 
 data = []
 timeData = []
@@ -47,6 +53,10 @@ class Init:
         ppm.image = icons[4]
         ppm['state'] = DISABLED
         ppm.place(x = 20, y = 540)
+
+        settingButton = Button(root, image=icons[6], command = lambda: settingsPage.startup(root))
+        settingButton.image = icons[6]
+        settingButton.place(x = 1004, y = 20)
 
         buttons = [allDataPoints, ph, temperature, ppm]
 
@@ -94,25 +104,25 @@ class Commands:
             #data[3] = time
 
             if filter == "all" or filter == None:
-                graph = Graph.graph_draw(data, timeData)
+                graph = LineGraph.graph_draw(data, timeData)
                 currentFilter = 'all'
 
             if filter == "ph":
                 tempArray = []
                 tempArray.append(data[0])
-                graph = Graph.graph_draw(tempArray, timeData, LINE_COLOURS[0], "pH")
+                graph = LineGraph.graph_draw(tempArray, timeData, LINE_COLOURS[0], "pH")
                 currentFilter = 'ph'
             
             if filter == "temp":
                 tempArray = []
                 tempArray.append(data[1])
-                graph = Graph.graph_draw(tempArray, timeData, LINE_COLOURS[1], "Temperature")
+                graph = LineGraph.graph_draw(tempArray, timeData, LINE_COLOURS[1], "Temperature")
                 currentFilter = 'temp'
             
             if filter == "ppm":
                 tempArray = []
                 tempArray.append(data[2])
-                graph = Graph.graph_draw(tempArray, timeData, LINE_COLOURS[2], "Salinity")
+                graph = LineGraph.graph_draw(tempArray, timeData, LINE_COLOURS[2], "Salinity")
                 currentFilter = 'ppm'
             return graph
         else:
@@ -172,7 +182,7 @@ class Commands:
         
         #Graph Data
         #Graph.graph_draw([[50,20,24,53,17]])
-        Graph.graph_draw(data, timeData)
+        LineGraph.graph_draw(data, timeData)
 
     def checkdatatype(mainArray, partOfArray, mainArrayLength):
         for i in range(0, mainArrayLength):
@@ -183,16 +193,22 @@ class Commands:
             elif i == 2 and mainArray[i] == partOfArray:
                 return "Salinity"
 
-class Graph:
+class LineGraph:
     def init():
         graphTool.use("TkAgg")
 
     def graph_draw(data, timerange, *args):
         global icons
         filteredData = False
+        colours = COLOURS
         #Initialise the graph
         f = Figure(figsize = (GRAPH_WIDTH,GRAPH_HEIGHT), dpi=100)
         a = f.add_subplot(111)
+        a.set_xlabel("Time (in minutes)")
+        a.set_ylabel("Data")
+        themedGraph = LineGraph.setTheme(f, a)
+        f = themedGraph[0]
+        a = themedGraph[1]
         #check for filter arguments
         if args:
             filteredData = True
@@ -205,7 +221,6 @@ class Graph:
             dataArray = list(map(int, dataArray))
             insertedTimeRange = list(map(int, insertedTimeRange))
 
-
             if not filteredData:
                 a.plot(insertedTimeRange, dataArray, label = dataLabel)
             else:
@@ -216,9 +231,8 @@ class Graph:
         canvas = FigureCanvasTkAgg(f, root)
         a.legend()
         canvas.get_tk_widget().place(x = 250, y = 100)
-        #f.savefig('figure.png')
 
-        saveImg = Button(root, image = icons[5], command = Graph.saveGraph)
+        saveImg = Button(root, image = icons[5], command = LineGraph.saveGraph)
         saveImg.image = icons[5]
         saveImg.place(x =940, y = 625)
         return f
@@ -237,7 +251,37 @@ class Graph:
         elif currentFilter == "ppm":
             savableGraph.savefig("Salinity.png")
 
-        
+    def setTheme(fig, graph):
+        currentTheme = settings.CURRENT_THEME
+        colours = COLOURS
+        if currentTheme == 'Light':
+            attri = LineGraph.changeTheme(graph, 0)
+        elif currentTheme == 'Dark':
+            attri = LineGraph.changeTheme(graph, 1)
+        elif currentTheme == 'Desert':
+            attri = LineGraph.changeTheme(graph, 2)
+        elif currentTheme == 'Oceanic':
+            attri = LineGraph.changeTheme(graph, 3)
+        elif currentTheme == 'MOZ-Theme':
+            attri = LineGraph.changeTheme(graph, 4)
+        fig.set_facecolor(attri[0])
+        graph.set_facecolor(attri[1])
+        return fig, graph
+
+    def changeTheme(self, theme):
+        graphEditor.rcParams['text.color'] = themeAttributes[theme][0]
+        self.spines['left'].set_color(themeAttributes[theme][1])
+        self.spines['right'].set_color(themeAttributes[theme][2])
+        self.spines['top'].set_color(themeAttributes[theme][3])
+        self.spines['bottom'].set_color(themeAttributes[theme][4])
+        self.xaxis.label.set_color(themeAttributes[theme][5])
+        self.yaxis.label.set_color(themeAttributes[theme][6])
+        self.tick_params(axis = 'x', colors = themeAttributes[theme][7])
+        self.tick_params(axis = 'y', colors = themeAttributes[theme][8])
+        outline = themeAttributes[theme][9]
+        background = themeAttributes[theme][10]
+
+        return outline, background
 
 ##Run window and setup
 Init.setup()
