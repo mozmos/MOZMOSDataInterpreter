@@ -86,6 +86,11 @@ MOZMOS Data Interpreter, and accompanying software, documentation and files are 
 
 
 ## Hotfix list
-#### Version 0.1.3
-* Hotfix 1: Fixed bug where uploading a second file would raise an error, and graph wouldn't display
-* Hotfix 2: Fixed bug where system would raise an error when data was already uploaded and user would cancel a second upload of data
+<details>
+   <summary>Click to expand</summary>
+   
+   #### Version 0.1.3
+   * Hotfix 1: Fixed bug where uploading a second file would raise an error, and graph wouldn't display
+   * Hotfix 2: Fixed bug where system would raise an error when data was already uploaded and user would cancel a second upload of data
+
+</details>
