@@ -44,6 +44,7 @@ MOZMOS Data Interpreter, and accompanying software, documentation and files are 
 
 <details>
    <summary>Click to expand</summary>
+   
    #### Version 0.1.4
    * Introducing a settings menu!
     * 5 new themes for the graph to add flair
