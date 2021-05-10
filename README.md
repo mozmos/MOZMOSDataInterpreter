@@ -33,6 +33,7 @@ MOZMOS Data Interpreter, and accompanying software, documentation and files are 
     - [ ] _Change Language_
 - [x] Graph Creation
 - [x] Convert graph into image for exportation
+- [ ] Options for image type when exporting graph
 - [ ] Remove anti-override feature of graph saving
 - [ ] Visually appealing interface
     - [ ] _Backgrounds_
