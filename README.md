@@ -10,23 +10,14 @@ MOZMOS Data Interpreter, and accompanying software, documentation and files are 
 * Automatically plots the datapoints along a line graph, with colouring and labels
 * You can save these graphs as a .png file
 
-## Latest Update - Version 0.1.4
-* Introducing a settings menu!
-    * 5 new themes for the graph to add flair
-        * _Light Theme - A default theme, suitable for presentations and office meetings_
-        * _Dark Theme - A darker theme for more modernistic feels_
-        * _Desert Theme - A stylised theme for more specific applications_
-        * _Oceanic Theme - An ocean-based theme, perfect for what MOZMOS is related to_
-        * _MOZ-Theme - A custom theme based on the MOZMOS Colour Pallete_
-    * Graph, Accessibility and Language content will be added in future updates
-* Modular fashion for theme changing
-* Themes are applied when saving images
+## Latest Update - Version 0.1.5
+* Added a background for a more interesting interface
 * General bug fixes
 
 ## Future Features
 - [ ] Settings Menu
     - [x] _Change colours_
-    - [ ] _Change graph colours_
+    - [x] _Change graph colours_
     - [ ] _Change graph type_
     - [ ] _Disability/Inclusivity Settings_
         - [ ] _Audio sounds for buttons and text_
@@ -35,11 +26,12 @@ MOZMOS Data Interpreter, and accompanying software, documentation and files are 
 - [x] Convert graph into image for exportation
 - [ ] Options for image type when exporting graph
 - [ ] Remove anti-override feature of graph saving
-- [ ] Visually appealing interface
-    - [ ] _Backgrounds_
+- [x] Visually appealing interface (main GUI)
+    - [x] _Backgrounds_
     - [x] _Colours_
-    - [ ] _Styles_
+    - [x] _Styles_
     - [x] _Buttons_
+- [ ] Visually appealing interface (settings)
     
 ## Update List
 

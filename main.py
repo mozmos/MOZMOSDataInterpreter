@@ -6,6 +6,7 @@ from importFile import *
 from settingsPage import *
 import settings
 from settings import *
+from testingFramework import *
 
 #graphing
 import matplotlib as graphTool
@@ -28,6 +29,10 @@ currentFilter = None
 
 class Init:
     def setup():
+        img = PhotoImage(file = "bg.png")
+        bg = Label(root, image = img)
+        bg.image = img
+        bg.place(x = 0, y = 0)
         Init.buttons()
     
     def buttons():
@@ -282,6 +287,11 @@ class LineGraph:
         background = themeAttributes[theme][10]
 
         return outline, background
+
+class TestingFramework:
+    def testData():
+        start = Button(root, text = "Generate Test Data", command = dataGen.allData)
+        start.place(x = 50, y = 650)
 
 ##Run window and setup
 Init.setup()
