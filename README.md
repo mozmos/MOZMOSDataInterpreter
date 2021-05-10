@@ -41,9 +41,10 @@ MOZMOS Data Interpreter, and accompanying software, documentation and files are 
     - [x] _Buttons_
     
 ## Update List
-#### Version 0.1.4
+
 <details>
    <summary>Click to expand</summary>
+   #### Version 0.1.4
    * Introducing a settings menu!
     * 5 new themes for the graph to add flair
         * _Light Theme - A default theme, suitable for presentations and office meetings_
