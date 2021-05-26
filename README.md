@@ -14,6 +14,11 @@ MOZMOS Data Interpreter, and accompanying software, documentation and files are 
 * Added a background for a more interesting interface
 * General bug fixes
 
+## Future Update
+* Data will now be loaded from a package (folder)
+* MOZMOS Data Interpreter will display system information from the module
+* Options to view the system logs from the module
+
 ## Future Features
 - [ ] Settings Menu
     - [x] _Change colours_
